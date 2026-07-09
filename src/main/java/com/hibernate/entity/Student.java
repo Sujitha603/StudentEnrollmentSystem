@@ -1,28 +1,49 @@
-package com.jdbc.dto;
+package com.hibernate.entity;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
-import com.jdbc.enums.CourseType;
-import com.jdbc.enums.Gender;
-import com.jdbc.enums.Grade;
+import com.hibernate.enums.CourseType;
+import com.hibernate.enums.Gender;
+import com.hibernate.enums.Grade;
+import jakarta.persistence.*;
 
-public class StudentDTO {
+import org.hibernate.annotations.UuidGenerator;
 
-    private int id;
+@Entity
+@Table(name = "student_table")
+
+public class Student {
+
+    @Id
+    @UuidGenerator
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
+
     private String firstName;
     private String lastName;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private String city;
     private String state;
+
     private String mobileNumber;
     private String emailId;
+
     private int courseId;
     private String courseName;
+
     private LocalDate enrollmentDate;
+
+    @Enumerated(EnumType.STRING)
     private CourseType courseType;
+
+    @Enumerated(EnumType.STRING)
     private Grade grade;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -74,7 +95,7 @@ public class StudentDTO {
         return grade;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -128,7 +149,7 @@ public class StudentDTO {
 
     @Override
     public String toString() {
-        return "StudentDTO{" +
+        return "Student{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -1,10 +1,10 @@
-package com.jdbc.enums;
+package com.hibernate.enums;
 
 public enum Grade {
     A,
     B,
     C,
     D,
-    E,
     F
+
 }
